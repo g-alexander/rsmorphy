@@ -50,7 +50,7 @@ impl AnalyzerUnit for KnownSuffixAnalyzer {
         let mut subresult: Vec<(u16, u16, Lex)> = Vec::new();
 
         // TODO BTreeMap?
-        let mut total_counts: Vec<u16> = vec![1; morph.dict.paradigm_prefixes.len()];
+        let mut total_counts: Vec<u32> = vec![1; morph.dict.paradigm_prefixes.len()];
 
         for (prefix_id, prefix, suffixes_dawg) in self.possible_prefixes(morph, word_lower) {
             log::trace!(r#" prefix_id: {}, prefix: "{}" "#, prefix_id, prefix);
@@ -98,7 +98,7 @@ impl AnalyzerUnit for KnownSuffixAnalyzer {
                             total_counts[prefix_id as usize],
                             cnt
                         );
-                        total_counts[prefix_id as usize] += cnt;
+                        total_counts[prefix_id as usize] += cnt as u32;
 
                         let seen = Seen::new(fixed_word.clone(), tag, para_id);
 

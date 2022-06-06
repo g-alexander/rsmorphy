@@ -9,6 +9,7 @@ pub struct GuideEntry {
     pub sibling: u8,
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct Guide {
     /// Root index
